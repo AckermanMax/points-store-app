@@ -1,0 +1,112 @@
+from array import array
+from re import A
+
+M = 0
+
+# БАЛЛОВАЯ СИСТЕМА:
+
+# ВКЛЮЧАЕТ В СЕБЯ:
+
+# утренняя зарядка, 1 час продуктивной работы, Медитация, 30 прочитанных страниц, День без сладкого, Каждые заработанные 10.000 рублей
+
+
+data = [["Действие", "Награда"],
+        {"утренняя зарядка": 3, "1 час продуктивной работы": 10, 
+        "Медитация": 3, "30 прочитанных страниц": 5, 
+        "День без сладкого": 10, "Каждые заработанные 10.000 рублей": 100}]
+# Здесь такой тип данных:
+# [[],
+#  {}]
+# Где [] Внешние и внутри являются списком и с ними надо работать как со списком 
+# https://pythonworld.ru/tipy-dannyx-v-python/spiski-list-funkcii-i-metody-spiskov.html
+# И {} Являются типом данных СЛОВАРЬ
+# https://pythonworld.ru/tipy-dannyx-v-python/slovari-dict-funkcii-i-metody-slovarej.html
+
+def create_table(data, header_separator=True):
+
+    header_cols = len(data[0])
+
+    # Сделал чтобы строки "Категории" и "Цена", вывводились
+    # в качестве заголовка
+    elem_col1 = [data[0][0]] + list(data[1].keys())
+    elem_col2 = [data[0][1]] + list(map(str, list(data[1].values())))
+
+    # Определяет ширину для каждого столбика
+
+    col_width = [len(max(elem_col1, key=len)),
+                 len(max(elem_col2, key=len))]
+
+    # Границы заголовков столбцов
+    separator = "-+-".join('-' * n for n in col_width)
+
+    # Создание таблицы
+    i = 0
+    for col in range(len(elem_col1)):
+        if i == 1:
+            print(separator)
+        result = [elem_col1[col].rjust(col_width[0]),
+                  elem_col2[col].rjust(col_width[1])]
+        i += 1
+        print(" | ".join(result))
+
+create_table(data)
+
+print('\n\n')
+
+# МАГАЗИН БАЛЛОВ:
+
+# Поход в кафе, 1 серия сериала или 1 фильм, Внеплановый выходной
+
+shop = [["Магазин", "стоимость"],
+        {"Поход в кафе": 20, "1 серия сериала|1 фильм": 15, 
+        "Внеплановый выходной": 50, "Потратить 10.000р на себя": 100}]
+# Здесь такой тип данных:
+# [[],
+#  {}]
+# Где [] Внешние и внутри являются списком и с ними надо работать как со списком 
+# https://pythonworld.ru/tipy-dannyx-v-python/spiski-list-funkcii-i-metody-spiskov.html
+# И {} Являются типом данных СЛОВАРЬ
+# https://pythonworld.ru/tipy-dannyx-v-python/slovari-dict-funkcii-i-metody-slovarej.html
+
+
+def create_table(shop, header_separator=True):
+
+    header_cols = len(shop[0])
+
+    # Строки "Категории" и "Цена", вывводятся в качестве заголовка
+    elem_col1 = [shop[0][0]] + list(shop[1].keys())
+    elem_col2 = [shop[0][1]] + list(map(str, list(shop[1].values())))
+
+    # Определяет ширину для каждого столбика
+
+    col_width = [len(max(elem_col1, key=len)),
+                 len(max(elem_col2, key=len))]
+
+    # Границы заголовков столбцов
+    separator = "-+-".join('-' * n for n in col_width)
+
+    # Создание таблицы
+    i = 0
+    for col in range(len(elem_col1)):
+        if i == 1:
+            print(separator)
+        result = [elem_col1[col].rjust(col_width[0]),
+                  elem_col2[col].rjust(col_width[1])]
+        i += 1
+        print(" | ".join(result))
+
+
+create_table(shop)
+
+# ТЕСТИРУЮ ВЫВОДЫ ДАННЫХ:
+print('\n')
+print("Здесь данные от утренней зарядки(сначала лист, потом список):",data[1]["утренняя зарядка"])
+
+M = M + data[1]["утренняя зарядка"]
+
+print('\n')
+
+print("М = ",M)
+
+print('\n')
+print(shop)
